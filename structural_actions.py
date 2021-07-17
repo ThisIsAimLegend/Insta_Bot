@@ -13,5 +13,3 @@ def chooseAccounts(count):
         return bot_list
     else:
         raise RuntimeError("Not enough bot accounts!")
-
-chooseAccounts(7)

@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-import sys
 import keyboard
 import datetime as dt
 
@@ -43,7 +42,8 @@ def ClickOnStory():
         time.sleep(1)
 
 
-
+#NOT READY!!!
+#sends a follow request to the targetted account
 def following():
     keyboard.press_and_release("tab")
     time.sleep(0.5)
@@ -51,11 +51,13 @@ def following():
     time.sleep(0.5)
     keyboard.press_and_release("enter")
 
+#signs up into the selected bot account
 def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
     driver.find_element_by_name("password").send_keys(pw)
     driver.find_element_by_class_name("eGOV_").click()
 
+#posts all given comments on the first post
 def send_comment():
     for i in comment:
         commentary = driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]')
@@ -105,7 +107,6 @@ def ClickOnAccount():
     click_on_account.click()
     time.sleep(2)
 
-#NOT WORKING PROPERLY!!!
 #clicks on the latest picture on this account
 def ClickThroughPictures(target,bot):
     bot_memory = ea.SearchForAccount(target,bot)

@@ -33,6 +33,7 @@ def one():
     print("Bot fertig ausgeführt")
 
 def two():
+    bot_account = chooseAccounts(bot_count)
     for bot in bot_account:
         ib.getComments(comments)
         ib.open_browser()
@@ -43,10 +44,11 @@ def two():
         for element in target_account:
             ib.SearchAccount(element)
             ib.ClickOnAccount()
+            ib.ClickOnStory()
             ib.ClickThroughPictures(element,bot)
             ib.goBack()
             time.sleep(1)
-        time.sleep(5)
+        time.sleep(1)
         ib.EndProgram()
     print("Bot fertig ausgeführt")
 

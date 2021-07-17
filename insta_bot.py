@@ -4,8 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-import sys
 import keyboard
+import datetime as dt
+
+import excel_actions as ea
 
 def getComments(c):
     global comment
@@ -14,102 +16,48 @@ def getComments(c):
 def goBack():
     #print("Go back")
     keyboard.press_and_release("esc")
-    time.sleep(1)
-
-#account-details for logging into the account
-def account1():
-    global name, pw
-    name = "test.mail.trichter@gmail.com"
-    pw = "test.python"
-
-def account2():
-    global name, pw
-    name = "checkmeout1337@gmail.com"
-    pw = "41KKIZ6h8JReWyxzlkSL"
-
-def account3():
-    global name, pw
-    name = "doublixah"
-    pw = "test.python"
-    try:
-        f = open("like_3","a")
-        f.close()
-    except:
-        open("like_3","w+")
-        f.close()
-
-def account4():
-    global name, pw
-    name = "candicejokenotfunny420"
-    pw = "test.python"
-    try:
-        f = open("like_4","a")
-        f.close()
-    except:
-        open("like_4","w")
-        f.close()
 
 def like_pictures():
     while True:
         driver.find_element_by_class_name("fr66n").click()
-        send_comment()
         time.sleep(1)
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
         except:
+            print("Fertig")
             break
         time.sleep(1)
 
-class FileOpener:
-    global data
-    def read(self,bot_account):
-        if bot_account == 1:
-             return open("like","r")
-        elif bot_account == 2:
-            return open("like_2","r")
-        elif bot_account == 3:
-            return open("like_3","r")
-        elif bot_account == 4:
-            return open("like_4","r")
-        else:
-            raise RuntimeError("Fehler beim öffnen der Datei")
-    def write(self,bot_account):
-        if bot_account == 1:
-            return open("like","a")
-        elif bot_account == 2:
-            return open("like_2","a")
-        elif bot_account == 3:
-            return open("like_3","a")
-        elif bot_account == 4:
-            return open("like_4","a")
-        else:
-            raise RuntimeError("Fehler beim Öffnen der Datei")
+def ClickOnStory():
+    story = driver.find_element_by_class_name("_6q-tv")
+    story.click()
+    time.sleep(1)
+    while True:
+        try:
+            driver.find_element_by_class_name("K_10X")
+            next = driver.find_element_by_class_name("coreSpriteRightChevron")
+            next.click()
+        except:
+            break
+        time.sleep(1)
 
-openFile = FileOpener()
 
-def changeFile(acc,bot_account):
-    acc = str(acc)
-    data = openFile.write(bot_account)
-    data.write(acc)
-    data.write("\n")
+#NOT READY!!!
+#sends a follow request to the targetted account
+def following():
+    keyboard.press_and_release("tab")
+    time.sleep(0.5)
+    keyboard.press_and_release("tab")
+    time.sleep(0.5)
+    keyboard.press_and_release("enter")
 
-def readOutFile(target_account,bot_account):
-    data = openFile.read(bot_account)
-    datasheet = data.read()
-    if target_account in datasheet:
-        print("Gefunden:",target_account)
-    else:
-        print("Like-Bot wird ausgeführt für:",target_account)
-        changeFile(target_account,bot_account)
-        like_pictures()
-
-    data.close()
-
-def sign_up():
+#signs up into the selected bot account
+def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
     driver.find_element_by_name("password").send_keys(pw)
     driver.find_element_by_class_name("eGOV_").click()
 
+#posts all given comments on the first post
 def send_comment():
     for i in comment:
         commentary = driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]')
@@ -127,27 +75,15 @@ def open_browser():
     time.sleep(0.5)
     driver.maximize_window()
 
-
-
 #decline cookies
 def noCookies():
     driver.find_element_by_class_name("bIiDR").click()
     time.sleep(0.5)
 
-
 #signs into bot account
 def FormSigner(bc):
-    if bc == 1:
-        account1()
-    elif bc == 2:
-        account2()
-    elif bc == 3:
-        account3()
-    elif bc == 4:
-        account4()
-    else:
-        raise RuntimeError("Fehler bei Auswahl des Bot Accounts")
-    sign_up()
+    name , pw = ea.getAccount(bc)
+    sign_up(name, pw)
     time.sleep(4)
 
 #Decline saving the password
@@ -157,12 +93,12 @@ def NoPasswordSave():
 
 #Don't accept notifications
 def NoNotifications():
-    WebDriverWait(driver, 4).until(EC.element_to_be_clickable((By.CLASS_NAME, "HoLwm"))).click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "HoLwm"))).click()
     time.sleep(0.5)
 
 #searches for targetted account
 def SearchAccount(target_account):
-    WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR,'input[placeholder="Suchen"]'))).send_keys(target_account)
+    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR,'input[placeholder="Suchen"]'))).send_keys(target_account)
     time.sleep(1)
 
 #clicks on first suggested account
@@ -172,27 +108,32 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def ClickThroughPictures(target_account,bot_account):
-    try:
-        select_picture = driver.find_element_by_class_name("eLAPa")
-        #print(select_picture)
-    except:
-        print("You are not following this account!")
-        select_picture = None
-        #print(select_picture)
+def ClickThroughPictures(target,bot):
+    bot_memory = ea.SearchForAccount(target,bot)
+    if bot_memory == False:
+        #following()
+        try:
+            select_picture = driver.find_element_by_class_name("eLAPa")
+            select_picture = True
+        except:
+            select_picture = False
+        if select_picture == True:
+            driver.find_element_by_class_name("eLAPa").click()
+            time.sleep(2)
+            timer = dt.datetime.now()
+            timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
+            print(timer)
+            print("Ziel:",target)
+            print("Bot:",bot,"\n")
+            like_pictures()
+            time.sleep(1)
+            ea.AddTargetToMemory(target,bot)
+        else:
+            driver.quit()
+    elif bot_memory == True:
         pass
-
-    if select_picture != None:
-        select_picture.click()
     else:
-        driver.find_element_by_class_name("y3zKF").click()
-        time.sleep(1)
-        driver.quit()
-        sys.exit("Sent request! \nShutting down")
-    time.sleep(1)
-
-    #Likes the post if not already done
-    readOutFile(target_account,bot_account)
+        print("Fehler beim Auslesen der Accountliste")
 
 def EndProgram():
     driver.quit()

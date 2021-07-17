@@ -1,0 +1,1 @@
+This program is a demonstration for a instagram like-and-follow bot. It relies mainly on Selenium.
