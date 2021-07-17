@@ -13,10 +13,12 @@ def getComments(c):
     global comment
     comment = c
 
+#closes the picture
 def goBack():
     #print("Go back")
     keyboard.press_and_release("esc")
 
+#likes every picture until there is no right arrow
 def like_pictures():
     while True:
         driver.find_element_by_class_name("fr66n").click()
