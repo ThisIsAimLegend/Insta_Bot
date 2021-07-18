@@ -30,6 +30,7 @@ def like_pictures():
             break
         time.sleep(1)
 
+#clicks through the stories if they exist
 def ClickOnStory():
     story = driver.find_element_by_class_name("_6q-tv")
     story.click()
