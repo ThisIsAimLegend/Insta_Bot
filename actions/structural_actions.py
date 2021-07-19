@@ -1,6 +1,7 @@
 import excel_actions as ea
 from random import sample
 
+#chooses the accounts for a given count of bots
 def chooseAccounts(count):
     max_count = int(ea.getNumberofAccounts())
     count = int(count)
