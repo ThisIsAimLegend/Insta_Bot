@@ -3,7 +3,7 @@ from openpyxl import load_workbook, Workbook
 #Account that should be deleted
 search_object = "checkmeout1337"
 
-
+#NOT WORKING FOR NOW!!!
 wb = load_workbook(filename="data.xlsx")
 w_accounts = wb["Account-Daten"]
 i = 1
