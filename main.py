@@ -1,19 +1,19 @@
 import time
 from sys import exit
 import test_file as tf
-import insta_bot as ib
-from excel_actions import chooseAccounts
+#import insta_bot as ib
+import excel_actions as ea
 
 #------------------------------------------------------
 target_account = ["montanablack"]
 #Gebe die Mengae der Bot Accounts an
-bot_count = 1
-comments = []
+bot_count = 2
+comments = ["lul", "xD"]
 #💪
 #------------------------------------------------------
 
 def one():
-    bot_account = chooseAccounts(bot_count)
+    bot_account = ea.chooseAccounts(bot_count)
     for bot in bot_account:
         tf.getComments(comments)
         tf.open_browser()

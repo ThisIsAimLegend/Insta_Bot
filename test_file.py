@@ -7,7 +7,7 @@ import time
 import keyboard
 import datetime as dt
 
-import actions.excel_actions as ea
+import excel_actions as ea
 
 def getComments(c):
     global comment
