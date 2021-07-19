@@ -4,14 +4,14 @@ from sys import exit
 
 
 def getNumberofAccounts():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]
     maximum = w_bot.max_row
     maximum -= 1
     return maximum
 
 def getAllAccounts():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]
     maximum = w_bot.max_row
     i = 1
@@ -20,7 +20,7 @@ def getAllAccounts():
         i += 1
 
 def getAccount(acc):
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]
     maximum = w_bot.max_row
     bot = int(acc + 1)
@@ -33,7 +33,7 @@ def getAccount(acc):
         raise ModuleNotFoundError("This bot doesn't exist!")
 
 def SearchForAccount(target,bot):
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Bots"]
     for column in w_bot.iter_cols(min_row=2, min_col=bot, max_col=bot, values_only=True):
         if target in column:
@@ -42,7 +42,7 @@ def SearchForAccount(target,bot):
             return False
 
 def AddTargetToMemory(target,bot):
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Bots"]
     i = 2
     for account in w_bot.iter_cols(min_row=2, min_col=bot, max_col=bot, values_only=True):

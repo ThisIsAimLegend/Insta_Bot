@@ -1,5 +1,4 @@
 import datetime as dt
-import excel_actions as ea
 from openpyxl import load_workbook, Workbook
 
 timer = dt.datetime.now()
@@ -21,5 +20,3 @@ def chooseAccounts(count,max_accounts):
     else:
         raise RuntimeError("Not enough existing bot accounts!")
     return bot_accounts
-
-chooseAccounts(3,getNumberofAccounts()))

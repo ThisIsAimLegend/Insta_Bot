@@ -9,14 +9,14 @@ email = "checkmeout1337@gmail.com"
 
 
 def  check_memory():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Bots"]
     for row in w_bot.iter_cols(min_row=1, min_col=1, max_row=1, values_only=True):
         if new_bot in row:
             exit("Bot already in bot memory!")
 
 def bot_memory():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Bots"]
     new_col = w_bot.max_column
     new_col += 1
@@ -26,14 +26,14 @@ def bot_memory():
 
 
 def check_account():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]
     for row in w_bot.iter_rows(min_row=2, min_col=1, max_col=3, values_only=True):
         if new_bot in row:
             exit("Bot already in account list!")
 
 def bot_account():
-    wb = load_workbook(filename="data.xlsx")
+    wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]
     new_row = w_bot.max_row
     new_row += 1
