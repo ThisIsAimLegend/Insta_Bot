@@ -32,9 +32,8 @@ def like_pictures():
 
 #clicks through the stories if they exist
 def ClickOnStory():
-    story = driver.find_element_by_class_name("_6q-tv")
-    story.click()
-    time.sleep(1)
+    WebDriverWait(driver, 7).until(EC.presence_of_element_located((By.CLASS_NAME,'_6q-tv'))).click()
+    time.sleep(3)
     while True:
         try:
             driver.find_element_by_class_name("K_10X")
@@ -73,7 +72,7 @@ def send_comment():
 #opens the browser on www.instagram.com
 def open_browser():
     global driver
-    driver = webdriver.Chrome("D:\Programme\learn_coding\Selenium\chromedriver.exe")
+    driver = webdriver.Chrome("chromedriver.exe")
     driver.get("https://www.instagram.com/")
     time.sleep(0.5)
     driver.maximize_window()

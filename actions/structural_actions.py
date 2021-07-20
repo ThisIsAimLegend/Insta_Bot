@@ -1,5 +1,5 @@
 #import excel_actions as ea
-from excel_actions import getNumberofAccounts
+from .excel_actions import getNumberofAccounts
 from random import sample
 
 #chooses the accounts for a given count of bots
