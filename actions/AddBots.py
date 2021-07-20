@@ -3,9 +3,9 @@ from openpyxl.styles.borders import Border, Side
 from sys import exit
 
 #Account that should be deleted
-new_bot = "Inunction"
-pw = "test.python"
-email = "checkmeout1337@gmail.com"
+new_bot = "aha lul"
+pw = "aha lul"
+email = "aha@lul"
 
 
 def  check_memory():
@@ -21,7 +21,7 @@ def bot_memory():
     new_col = w_bot.max_column
     new_col += 1
     bot_num = w_bot.cell(row=1,column=new_col,value=new_bot).border = Border(bottom=Side(style="thick"),left=Side(style="thick"))
-    wb.save("data.xlsx")
+    wb.save("./data/data.xlsx")
     print("New bot memory created:",new_bot)
 
 
@@ -40,7 +40,7 @@ def bot_account():
     w_bot.cell(row=new_row, column=1, value=new_bot)
     w_bot.cell(row=new_row, column=2, value=pw).border = Border(left=Side(style="thick"))
     w_bot.cell(row=new_row, column=3, value=email).border = Border(left=Side(style="thick"))
-    wb.save("data.xlsx")
+    wb.save("./data/data.xlsx")
     print("New bot account in list:",new_bot)
 
 check_account()
