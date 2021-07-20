@@ -1,4 +1,4 @@
-from openpyxl import load_workbook, Workbook
+from openpyxl import load_workbook
 from openpyxl.styles.borders import Border, Side
 from sys import exit
 

@@ -1,7 +1,7 @@
 import time
 from sys import exit
 import test_file as tf
-import actions.insta_bot as ib
+#import actions.insta_bot as ib
 import actions.excel_actions as ea
 from actions.structural_actions import chooseAccounts
 
