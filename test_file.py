@@ -8,10 +8,8 @@ import keyboard
 import datetime as dt
 
 import actions.excel_actions as ea
+import actions.comment_actions as ca
 
-def getComments(c):
-    global comment
-    comment = c
 
 #closes the picture
 def goBack():
@@ -59,15 +57,14 @@ def sign_up(name, pw):
     driver.find_element_by_name("password").send_keys(pw)
     driver.find_element_by_class_name("eGOV_").click()
 
-#posts all given comments on the first post
-def send_comment():
-    for i in comment:
-        commentary = driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]')
-        commentary.click()
-        time.sleep(0.5)
-        keyboard.write(i)
-        keyboard.press_and_release("Enter")
-        time.sleep(1)
+#posts random comment from topic list
+def send_comment(topic):
+    comment = ca.returnFullComment(topic)
+    driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+    time.sleep(0.5)
+    keyboard.write(comment)
+    keyboard.press_and_release("Enter")
+    time.sleep(1)
 
 #opens the browser on www.instagram.com
 def open_browser():
@@ -110,7 +107,7 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def ClickThroughPictures(target,bot):
+def ClickThroughPictures(target,bot,topic):
     bot_memory = ea.SearchForAccount(target,bot)
     if bot_memory == False:
         #following()
@@ -127,6 +124,7 @@ def ClickThroughPictures(target,bot):
             print(timer)
             print("Ziel:",target)
             print("Bot:",bot,"\n")
+            send_comment(topic)
             like_pictures()
             time.sleep(1)
             ea.AddTargetToMemory(target,bot)

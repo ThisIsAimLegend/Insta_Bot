@@ -3,19 +3,19 @@ from sys import exit
 import test_file as tf
 #import actions.insta_bot as ib
 from actions.structural_actions import chooseAccounts
+import insta_bot as ib
 
 #------------------------------------------------------
 target_account = ["montanablack"]
 #Gebe die Mengae der Bot Accounts an
 bot_count = 2
-comments = ["lul", "xD"]
+topic = ""
 #💪
 #------------------------------------------------------
 
 def one():
     bot_account = chooseAccounts(bot_count)
     for bot in bot_account:
-        tf.getComments(comments)
         tf.open_browser()
         tf.noCookies()
         tf.FormSigner(bot)
@@ -25,7 +25,7 @@ def one():
             tf.SearchAccount(element)
             tf.ClickOnAccount()
             tf.ClickOnStory()
-            tf.ClickThroughPictures(element,bot)
+            tf.ClickThroughPictures(element,bot,topic)
             tf.goBack()
             time.sleep(1)
         time.sleep(1)
