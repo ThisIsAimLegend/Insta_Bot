@@ -66,6 +66,16 @@ def send_comment(topic):
     keyboard.press_and_release("Enter")
     time.sleep(1)
 
+def logging(log):
+    print(log)
+    file = open("data/bot_log.txt","a")
+    file.write("\n")
+    for row in log:
+        file.write(row)
+        file.write("\n")
+    file.close()
+
+#-------------------------------------------------------------------------------------------------
 #opens the browser on www.instagram.com
 def open_browser():
     global driver
@@ -121,9 +131,11 @@ def ClickThroughPictures(target,bot,topic):
             time.sleep(2)
             timer = dt.datetime.now()
             timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
-            print(timer)
-            print("Ziel:",target)
-            print("Bot:",bot,"\n")
+            log = []
+            log.append(timer)
+            log.append("Ziel:",target)
+            log.append("Bot:",bot)
+            logging(log)
             send_comment(topic)
             like_pictures()
             time.sleep(1)

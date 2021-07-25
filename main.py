@@ -35,7 +35,6 @@ def one():
 def two():
     bot_account = chooseAccounts(bot_count)
     for bot in bot_account:
-        ib.getComments(comments)
         ib.open_browser()
         ib.noCookies()
         ib.FormSigner(bot)
