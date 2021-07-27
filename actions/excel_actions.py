@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 from openpyxl.styles.borders import Border, Side
 from sys import exit
+import random
 
 
 def getNumberofAccounts():
@@ -8,6 +9,7 @@ def getNumberofAccounts():
     w_bot = wb["Account-Daten"]
     maximum = w_bot.max_row
     maximum -= 1
+    wb.close()
     return maximum
 
 def getAllAccounts():
@@ -18,6 +20,7 @@ def getAllAccounts():
     for acc in w_bot.iter_rows(min_row=2, min_col=1, max_col=3, values_only=True):
         print(i,":",acc)
         i += 1
+    wb.close()
 
 def getAccount(acc):
     wb = load_workbook(filename="./data/data.xlsx")
@@ -28,9 +31,11 @@ def getAccount(acc):
         name = w_bot.cell(row=bot,column=1).value
         pw = w_bot.cell(row=bot,column=2).value
         #print(name,pw)
+        wb.close()
         return name, pw
     else:
         raise ModuleNotFoundError("This bot doesn't exist!")
+
 
 def SearchForAccount(target,bot):
     wb = load_workbook(filename="./data/data.xlsx")
@@ -40,6 +45,7 @@ def SearchForAccount(target,bot):
             return True
         else:
             return False
+    wb.close()
 
 def AddTargetToMemory(target,bot):
     wb = load_workbook(filename="./data/data.xlsx")
@@ -51,4 +57,5 @@ def AddTargetToMemory(target,bot):
                 i += 1
     w_bot.cell(row=i, column=bot, value=target).border = Border(left=Side(style="thick"))
     wb.save("data.xlsx")
+    wb.close()
     print("Successfully added",target,"in line",i,"to the bot memory")

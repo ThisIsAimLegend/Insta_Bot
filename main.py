@@ -6,11 +6,10 @@ from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
 #------------------------------------------------------
-target_account = ["montanablack"]
-#Gebe die Mengae der Bot Accounts an
+target_account = ["dertrichter_jr"]
+#Gebe die Menge der Bot Accounts an
 bot_count = 2
-topic = ""
-#💪
+topic = "comments"
 #------------------------------------------------------
 
 def one():

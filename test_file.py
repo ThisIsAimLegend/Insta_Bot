@@ -7,8 +7,8 @@ import time
 import keyboard
 import datetime as dt
 
-import actions.excel_actions as ea
-import actions.comment_actions as ca
+import actions.excel_actions as excel
+import actions.comment_actions as comments
 
 
 #closes the picture
@@ -55,17 +55,28 @@ def following():
 def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
     driver.find_element_by_name("password").send_keys(pw)
-    driver.find_element_by_class_name("eGOV_").click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "eGOV_"))).click()
 
 #posts random comment from topic list
 def send_comment(topic):
-    comment = ca.returnFullComment(topic)
+    comment = comments.returnFullComment(topic)
     driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
     time.sleep(0.5)
     keyboard.write(comment)
     keyboard.press_and_release("Enter")
     time.sleep(1)
 
+#creates the log as a list
+def create_log(target, bot):
+    timer = dt.datetime.now()
+    timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
+    log = []
+    log.append(timer)
+    log.append("Ziel:",target)
+    log.append("Bot:",bot)
+    return log
+    
+#creates a log in "bot_log.txt"
 def logging(log):
     print(log)
     file = open("data/bot_log.txt","a")
@@ -91,7 +102,7 @@ def noCookies():
 
 #signs into bot account
 def FormSigner(bc):
-    name , pw = ea.getAccount(bc)
+    name , pw = excel.getAccount(bc)
     sign_up(name, pw)
     time.sleep(4)
 
@@ -118,9 +129,8 @@ def ClickOnAccount():
 
 #clicks on the latest picture on this account
 def ClickThroughPictures(target,bot,topic):
-    bot_memory = ea.SearchForAccount(target,bot)
+    bot_memory = excel.SearchForAccount(target,bot)
     if bot_memory == False:
-        #following()
         try:
             select_picture = driver.find_element_by_class_name("eLAPa")
             select_picture = True
@@ -129,17 +139,12 @@ def ClickThroughPictures(target,bot,topic):
         if select_picture == True:
             driver.find_element_by_class_name("eLAPa").click()
             time.sleep(2)
-            timer = dt.datetime.now()
-            timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
-            log = []
-            log.append(timer)
-            log.append("Ziel:",target)
-            log.append("Bot:",bot)
+            log = create_log(target,bot)
             logging(log)
             send_comment(topic)
             like_pictures()
             time.sleep(1)
-            ea.AddTargetToMemory(target,bot)
+            excel.AddTargetToMemory(target,bot)
         else:
             driver.quit()
     elif bot_memory == True:
@@ -147,5 +152,6 @@ def ClickThroughPictures(target,bot,topic):
     else:
         print("Fehler beim Auslesen der Accountliste")
 
+#stops the program and closes the browser window
 def EndProgram():
     driver.quit()
