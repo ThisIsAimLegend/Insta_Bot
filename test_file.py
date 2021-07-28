@@ -1,3 +1,4 @@
+import string
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -19,7 +20,10 @@ def goBack():
 #likes every picture until there is no right arrow
 def like_pictures():
     while True:
-        driver.find_element_by_class_name("fr66n").click()
+        like=driver.find_elements_by_class_name("_9AhH0")
+        like[-1].click()
+        time.sleep(0.1)
+        like[-1].click()
         time.sleep(1)
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
@@ -45,11 +49,14 @@ def ClickOnStory():
 #NOT READY!!!
 #sends a follow request to the targetted account
 def following():
+    keyboard.press_and_release("f5")
+    time.sleep(3)
     keyboard.press_and_release("tab")
-    time.sleep(0.5)
+    time.sleep(0.1)
     keyboard.press_and_release("tab")
-    time.sleep(0.5)
+    time.sleep(0.1)
     keyboard.press_and_release("enter")
+    time.sleep(0.5)
 
 #signs up into the selected bot account
 def sign_up(name, pw):
@@ -72,8 +79,8 @@ def create_log(target, bot):
     timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
     log = []
     log.append(timer)
-    log.append("Ziel:",target)
-    log.append("Bot:",bot)
+    log.append("Ziel:" + str(target))
+    log.append("Bot:" + str(bot))
     return log
     
 #creates a log in "bot_log.txt"
@@ -128,7 +135,7 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def ClickThroughPictures(target,bot,topic):
+def botting_actions(target,bot,topic):
     bot_memory = excel.SearchForAccount(target,bot)
     if bot_memory == False:
         try:
@@ -137,6 +144,7 @@ def ClickThroughPictures(target,bot,topic):
         except:
             select_picture = False
         if select_picture == True:
+            ClickOnStory()
             driver.find_element_by_class_name("eLAPa").click()
             time.sleep(2)
             log = create_log(target,bot)
@@ -146,6 +154,8 @@ def ClickThroughPictures(target,bot,topic):
             time.sleep(1)
             excel.AddTargetToMemory(target,bot)
         else:
+            following()
+            time.sleep(2)
             driver.quit()
     elif bot_memory == True:
         pass
