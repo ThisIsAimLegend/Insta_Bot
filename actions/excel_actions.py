@@ -56,6 +56,6 @@ def AddTargetToMemory(target,bot):
             if element != None:
                 i += 1
     w_bot.cell(row=i, column=bot, value=target).border = Border(left=Side(style="thick"))
-    wb.save("data.xlsx")
-    wb.close()
+    wb.save("./data/data.xlsx")
     print("Successfully added",target,"in line",i,"to the bot memory")
+    wb.close()

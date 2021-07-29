@@ -6,14 +6,15 @@ from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
 #------------------------------------------------------
-target_account = ["montanablack"]
+target_account = ["dertrichter_jr"]
 #Gebe die Menge der Bot Accounts an
 bot_count = 3
-topic = "comments"
+topic = ""
 #------------------------------------------------------
 
 def one():
-    bot_account = chooseAccounts(bot_count)
+    #bot_account = chooseAccounts(bot_count)
+    bot_account = [4]
     for bot in bot_account:
         tf.open_browser()
         tf.noCookies()
@@ -27,8 +28,8 @@ def one():
             tf.goBack()
             time.sleep(1)
         time.sleep(1)
-        tf.EndProgram()
-    print("Bot fertig ausgeführt")
+        tf.EndProgram(bot)
+    print("Programm fertig ausgeführt")
 
 def two():
     bot_account = chooseAccounts(bot_count)

@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import keyboard
 import datetime as dt
@@ -20,15 +21,14 @@ def goBack():
 #likes every picture until there is no right arrow
 def like_pictures():
     while True:
-        like=driver.find_elements_by_class_name("_9AhH0")
-        like[-1].click()
-        time.sleep(0.1)
-        like[-1].click()
-        time.sleep(1)
+        act = ActionChains(driver)
+        like = driver.find_element_by_class_name("ZyFrc")
+        act.double_click(like).perform()
+        time.sleep(0.5)
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
         except:
-            print("Fertig")
+            print("Like auf allen Bildern hinzugefügt")
             break
         time.sleep(1)
 
@@ -67,20 +67,24 @@ def sign_up(name, pw):
 #posts random comment from topic list
 def send_comment(topic):
     comment = comments.returnFullComment(topic)
-    driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
-    time.sleep(0.5)
-    keyboard.write(comment)
-    keyboard.press_and_release("Enter")
-    time.sleep(1)
+    if comment == None:
+        pass
+    else:
+        time.sleep(1)
+        driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+        time.sleep(0.5)
+        keyboard.write(comment)
+        keyboard.press_and_release("Enter")
+        time.sleep(1)
 
 #creates the log as a list
 def create_log(target, bot):
     timer = dt.datetime.now()
-    timer = timer.strftime("[%H:%M:%S %d.%m.%Y]")
+    timer = timer.strftime("[%d.%m.%Y , %H:%M:%S]")
     log = []
     log.append(timer)
-    log.append("Ziel:" + str(target))
-    log.append("Bot:" + str(bot))
+    log.append("Ziel: " + str(target))
+    log.append("Bot: " + str(bot))
     return log
     
 #creates a log in "bot_log.txt"
@@ -158,10 +162,12 @@ def botting_actions(target,bot,topic):
             time.sleep(2)
             driver.quit()
     elif bot_memory == True:
+        print("Bot wurde bereits für den Ziel-Account ausgeführt")
         pass
     else:
         print("Fehler beim Auslesen der Accountliste")
 
 #stops the program and closes the browser window
-def EndProgram():
+def EndProgram(bot):
+    print("Bot",bot,"fertig")
     driver.quit()
