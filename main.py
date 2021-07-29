@@ -6,9 +6,9 @@ from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
 #------------------------------------------------------
-target_account = ["dertrichter_jr"]
+target_account = ["montanablack"]
 #Gebe die Menge der Bot Accounts an
-bot_count = 2
+bot_count = 3
 topic = "comments"
 #------------------------------------------------------
 
@@ -23,8 +23,7 @@ def one():
         for element in target_account:
             tf.SearchAccount(element)
             tf.ClickOnAccount()
-            tf.ClickOnStory()
-            tf.ClickThroughPictures(element,bot,topic)
+            tf.botting_actions(element,bot,topic)
             tf.goBack()
             time.sleep(1)
         time.sleep(1)
