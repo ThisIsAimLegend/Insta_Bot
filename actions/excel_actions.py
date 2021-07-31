@@ -59,3 +59,20 @@ def AddTargetToMemory(target,bot):
     wb.save("./data/data.xlsx")
     print("Successfully added",target,"in line",i,"to the bot memory")
     wb.close()
+
+def getCommentColumn(tCom):
+    wb = load_workbook(filename="./data/data.xlsx")
+    wCom = wb["Comments"]
+    max = wCom.max_column
+    allComs = []
+    i = 1
+    for element in  wCom.iter_cols(min_row=1, max_row=1, min_col=1, max_col=max, values_only=True):
+        allComs.append(element)
+    allComs = ["".join(x) for x in allComs]
+    print(allComs)
+    for x in allComs:
+        if tCom == x:
+            return i
+        else:
+            i += 1
+    raise RuntimeError("No comment named "+tCom+" found!")

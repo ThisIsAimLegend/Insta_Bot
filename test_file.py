@@ -11,6 +11,7 @@ import datetime as dt
 
 import actions.excel_actions as excel
 import actions.comment_actions as comments
+import actions.structural_actions as structure
 
 
 #closes the picture
@@ -19,10 +20,10 @@ def goBack():
     keyboard.press_and_release("esc")
 
 #likes every picture until there is no right arrow
-def like_pictures():
-    while True:
+def like_pictures(likes):
+    for i in range(likes):
         act = ActionChains(driver)
-        like = driver.find_element_by_class_name("ZyFrc")
+        like = WebDriverWait(driver, 7).until(EC.presence_of_element_located((By.CLASS_NAME,'ZyFrc')))
         act.double_click(like).perform()
         time.sleep(0.5)
         try:
@@ -63,6 +64,9 @@ def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
     driver.find_element_by_name("password").send_keys(pw)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "eGOV_"))).click()
+
+def find_comment():
+   tags = structure.getPostTags(driver)
 
 #posts random comment from topic list
 def send_comment(topic):
@@ -139,33 +143,29 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def botting_actions(target,bot,topic):
-    bot_memory = excel.SearchForAccount(target,bot)
-    if bot_memory == False:
-        try:
-            select_picture = driver.find_element_by_class_name("eLAPa")
-            select_picture = True
-        except:
-            select_picture = False
-        if select_picture == True:
-            ClickOnStory()
-            driver.find_element_by_class_name("eLAPa").click()
-            time.sleep(2)
-            log = create_log(target,bot)
-            logging(log)
-            send_comment(topic)
-            like_pictures()
-            time.sleep(1)
-            excel.AddTargetToMemory(target,bot)
+def botting_actions(target,bot,topic,likes):
+    try:
+        select_picture = driver.find_element_by_class_name("eLAPa")
+        select_picture = True
+    except:
+        select_picture = False
+    if select_picture == True:
+        ClickOnStory()
+        driver.find_element_by_class_name("eLAPa").click()
+        time.sleep(2)
+        log = create_log(target,bot)
+        logging(log)
+        find_comment()
+        if likes == None:
+            pass
         else:
-            following()
-            time.sleep(2)
-            driver.quit()
-    elif bot_memory == True:
-        print("Bot wurde bereits für den Ziel-Account ausgeführt")
-        pass
+            like_pictures(likes)
+        time.sleep(1)
+        excel.AddTargetToMemory(target,bot)
     else:
-        print("Fehler beim Auslesen der Accountliste")
+        following()
+        time.sleep(2)
+        driver.quit()
 
 #stops the program and closes the browser window
 def EndProgram(bot):

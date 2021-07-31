@@ -1,42 +1,54 @@
 import random
+from . import comments
 
-global topic_list
-topic_list = ["Fußball","Weiber","comments"]
-
-def getTopic(topic):
-    str(topic)
-    if topic in topic_list:
-        return topic
-    elif topic == "":
-        return None
-    else:
-        print("Topic not found")
-        return None
-
-def pickRandomEmoji():
-    emoji_list = ["💪🏼","🔥","👌🏼"]
-    emoji = random.choice(emoji_list)
-    return emoji
+def chooseComments(topic):
+    comDict = comments.comDict
+    i = 0
+    for t in comDict["topic_index"]:
+        if t == topic:
+            topicDict = comDict["topic"][i]
+            continue
+        else:
+            i += 1
+        
+    tags = topicDict.keys()
+    comment_list = []
+    for i in tags:
+        comment_list.append(i)
+    return comment_list
 
 def PickRandomComment(topic):
-    topic = getTopic(topic)
-    if topic == None:
-        return None
-    else:
-        path = "./actions/comments/"+topic+".txt"
-        file = open(path,"r")
-        data = file.read()
-        data = data.split("\n")
-        comment = random.choice(data)
-        str(comment)
+    comment_list = chooseComments(topic)
+    comment = random.choice(comment_list)
+    print(comment)
+    if comment != "":
         return comment
+    else:
+        return None
+
+def pickRandomEmoji(topic):
+    if topic == "Freunde":
+        emoji_list = comments.comDict["Freunde_emoji"].values()
+    elif topic == "Girls":
+        emoji_list = comments.comDict["Girls_emoji"].values()
+    elif topic == "Sport":
+        emoji_list = comments.comDict["Sport_emoji"].values()
+    elif topic == "Influencer":
+        emoji_list = comments.comDict["Influencer_emoji"].values()
+    else:
+        print("Type a topic that already exists!")
+        return None
+    emoji = random.choice(emoji_list)
+    return emoji
+    
 
 def returnFullComment(topic):
-    if PickRandomComment(topic) == None:
+    comment = PickRandomComment(topic)
+    if comment == None:
         pass
     else:
-        comment = str(PickRandomComment(topic))
-        emoji = str(pickRandomEmoji())
+        str(comment)
+        emoji = str(pickRandomEmoji(topic))
         full_comment = comment + emoji
         print(full_comment)
         return full_comment

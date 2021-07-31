@@ -74,3 +74,51 @@ Bot:4
 [18:51:12 29.07.2021]
 Ziel:dertrichter_jr
 Bot:4
+
+[29.07.2021 , 22:28:18]
+Ziel: dertrichter_jr
+Bot: 3
+
+[29.07.2021 , 22:29:25]
+Ziel: montanablack
+Bot: 2
+
+[29.07.2021 , 22:30:18]
+Ziel: montanablack
+Bot: 6
+
+[29.07.2021 , 22:32:12]
+Ziel: montanablack
+Bot: 5
+
+[30.07.2021 , 18:46:34]
+Ziel: montanablack
+Bot: 2
+
+[30.07.2021 , 18:50:04]
+Ziel: montanablack
+Bot: 6
+
+[30.07.2021 , 18:51:21]
+Ziel: beste_jodel
+Bot: 6
+
+[30.07.2021 , 18:59:29]
+Ziel: beste_jodel
+Bot: 5
+
+[30.07.2021 , 19:02:59]
+Ziel: beste_jodel
+Bot: 3
+
+[30.07.2021 , 19:05:03]
+Ziel: beste_jodel
+Bot: 4
+
+[30.07.2021 , 19:12:38]
+Ziel: beste_jodel
+Bot: 5
+
+[30.07.2021 , 19:13:47]
+Ziel: beste_jodel
+Bot: 5

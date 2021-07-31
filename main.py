@@ -6,15 +6,19 @@ from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
 #------------------------------------------------------
-target_account = ["dertrichter_jr"]
-#Gebe die Menge der Bot Accounts an
-bot_count = 3
+#Ziel-Account hier angeben
+target_account = ["beste_jodel"]
+#Menge der Bot Accounts hier angeben
+bot_count = 1 
+#Menge der Bilder die einen Like bekommen sollen
+like_count = 4
+#ONLY WORKS WITH "comments"!!!
+#Thema der Kommentare angeben
 topic = ""
 #------------------------------------------------------
 
 def one():
-    #bot_account = chooseAccounts(bot_count)
-    bot_account = [4]
+    bot_account = chooseAccounts(bot_count)
     for bot in bot_account:
         tf.open_browser()
         tf.noCookies()
@@ -24,7 +28,7 @@ def one():
         for element in target_account:
             tf.SearchAccount(element)
             tf.ClickOnAccount()
-            tf.botting_actions(element,bot,topic)
+            tf.botting_actions(element,bot,topic,like_count)
             tf.goBack()
             time.sleep(1)
         time.sleep(1)
@@ -42,13 +46,12 @@ def two():
         for element in target_account:
             ib.SearchAccount(element)
             ib.ClickOnAccount()
-            ib.ClickOnStory()
-            ib.ClickThroughPictures(element,bot)
+            ib.botting_actions(element,bot,topic)
             ib.goBack()
             time.sleep(1)
         time.sleep(1)
-        ib.EndProgram()
-    print("Bot fertig ausgeführt")
+        ib.EndProgram(bot)
+    print("Programm fertig ausgeführt")
 
 
 one()
