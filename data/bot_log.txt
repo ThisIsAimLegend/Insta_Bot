@@ -122,3 +122,11 @@ Bot: 5
 [30.07.2021 , 19:13:47]
 Ziel: beste_jodel
 Bot: 5
+
+[01.08.2021 , 12:25:29]
+Ziel: beste_jodel
+Bot: 6
+
+[01.08.2021 , 12:27:08]
+Ziel: beste_jodel
+Bot: 2

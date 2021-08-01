@@ -14,7 +14,7 @@ bot_count = 1
 like_count = 4
 #ONLY WORKS WITH "comments"!!!
 #Thema der Kommentare angeben
-topic = ""
+topic = "Sport"
 #------------------------------------------------------
 
 def one():
