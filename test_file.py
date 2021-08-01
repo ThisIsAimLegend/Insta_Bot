@@ -13,11 +13,10 @@ import actions.excel_actions as excel
 import actions.comment_actions as comments
 import actions.structural_actions as structure
 
-
 #closes the picture
 def goBack():
-    #print("Go back")
-    keyboard.press_and_release("esc")
+    close_button = driver.find_elements_by_class_name("wpO6b")
+    close_button[-1].click()
 
 #likes every picture until there is no right arrow
 def like_pictures(likes):
@@ -46,18 +45,32 @@ def ClickOnStory():
             break
         time.sleep(1)
 
+def ClickOnPicture():
+    driver.find_element_by_class_name("eLAPa").click()
+    time.sleep(1)
+
 
 #NOT READY!!!
 #sends a follow request to the targetted account
 def following():
     keyboard.press_and_release("f5")
     time.sleep(3)
-    keyboard.press_and_release("tab")
-    time.sleep(0.1)
+    #keyboard.press_and_release("tab")
+    #time.sleep(0.1)
     keyboard.press_and_release("tab")
     time.sleep(0.1)
     keyboard.press_and_release("enter")
     time.sleep(0.5)
+
+#check if already follows target account
+def check_if_follow():
+    try: 
+        driver.find_element_by_class_name("glyphsSpriteFriend_Follow")
+    except: 
+        following()
+    pass
+
+
 
 #signs up into the selected bot account
 def sign_up(name, pw):
@@ -69,26 +82,42 @@ def find_comment():
    tags = structure.getPostTags(driver)
 
 #posts random comment from topic list
-def send_comment(topic):
-    comment = comments.returnFullComment(topic)
-    if comment == None:
+def send_comment(topic,cpp):
+    comment_test = comments.returnFullComment(topic)
+    if comment_test == None:
         pass
     else:
-        time.sleep(1)
-        driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+        for i in range(cpp):
+            comment = comments.returnFullComment(topic)
+            time.sleep(1)
+            driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            time.sleep(0.5)
+            keyboard.write(comment)
+            keyboard.press_and_release("Enter")
+            time.sleep(1)
+
+def comment_loop(topic,comment_count,cpp):
+    for i in range(comment_count):
+        send_comment(topic,cpp)
         time.sleep(0.5)
-        keyboard.write(comment)
-        keyboard.press_and_release("Enter")
+        try:
+            driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
+        except:
+            print("Alle Kommentare abgeschickt")
+            break
         time.sleep(1)
 
 #creates the log as a list
-def create_log(target, bot):
+def create_log(target, bot, topic, like_count, comment_count):
     timer = dt.datetime.now()
     timer = timer.strftime("[%d.%m.%Y , %H:%M:%S]")
     log = []
     log.append(timer)
     log.append("Ziel: " + str(target))
     log.append("Bot: " + str(bot))
+    log.append("Pictures liked: " + str(like_count))
+    log.append("Comments posted: " + str(comment_count))
+    log.append("Comment topic: " + str(topic))
     return log
     
 #creates a log in "bot_log.txt"
@@ -143,27 +172,34 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def botting_actions(target,bot,topic,likes):
+def botting_actions(target,bot,topic,likes,comment_count,cpp):
     try:
         select_picture = driver.find_element_by_class_name("eLAPa")
         select_picture = True
     except:
         select_picture = False
     if select_picture == True:
+        check_if_follow()
         ClickOnStory()
-        driver.find_element_by_class_name("eLAPa").click()
-        time.sleep(2)
-        log = create_log(target,bot)
+        log = create_log(target,bot, topic, likes, comment_count)
         logging(log)
-        find_comment()
         if likes == None:
             pass
         else:
+            ClickOnPicture()
             like_pictures(likes)
+        time.sleep(0.5)
+        goBack()
+        time.sleep(0.5)
+        if comment_count == 0:
+            pass
+        else:
+            ClickOnPicture()
+            comment_loop(topic,comment_count,cpp)
         time.sleep(1)
         excel.AddTargetToMemory(target,bot)
     else:
-        following()
+        check_if_follow()
         time.sleep(2)
         driver.quit()
 

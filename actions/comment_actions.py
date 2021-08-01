@@ -20,7 +20,6 @@ def chooseComments(topic):
 def PickRandomComment(topic):
     comment_list = chooseComments(topic)
     comment = random.choice(comment_list)
-    print(comment)
     if comment != "":
         return comment
     else:
@@ -28,16 +27,18 @@ def PickRandomComment(topic):
 
 def pickRandomEmoji(topic):
     if topic == "Freunde":
-        emoji_list = comments.comDict["Freunde_emoji"].values()
+        emoji_list = comments.comDict["Freunde_emoji"]
     elif topic == "Girls":
-        emoji_list = comments.comDict["Girls_emoji"].values()
+        emoji_list = comments.comDict["Girls_emoji"]
     elif topic == "Sport":
-        emoji_list = comments.comDict["Sport_emoji"].values()
+        emoji_list = comments.comDict["Sport_emoji"]
     elif topic == "Influencer":
-        emoji_list = comments.comDict["Influencer_emoji"].values()
+        emoji_list = comments.comDict["Influencer_emoji"]
+    elif topic == "Kunst":
+        emoji_list = comments.comDict["Kunst_emoji"]
     else:
         print("Type a topic that already exists!")
-        return None
+        return ""
     emoji = random.choice(emoji_list)
     return emoji
     
