@@ -28,16 +28,24 @@ Influencer = {
     "": [],
 }
 
+Kunst = {
+    "Nice": [],
+    "schönes Bild": [],
+    "mega gut": [],
+    "ohaa": []
+}
+
 #\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 comDict = {
-    "topic" : [Freunde,Girls,Sport,Influencer],
-    "topic_index": ["Freunde","Grils","Sport","Influencer"],
+    "topic" : [Freunde,Girls,Sport,Influencer,Kunst],
+    "topic_index": ["Freunde","Grils","Sport","Influencer","Kunst"],
 
     "Freunde_emoji": ["💪🏼","🔥","👌🏼",""],
     "Girls_emoji": ["😍","❤️"],
     "Sport_emoji": ["","💪🏼","🔥","🦍","🏋️"],
     "Influencer_emoji": [],
+    "Kunst_emoji": ["👍","💖","🤗"]
 }
 
 

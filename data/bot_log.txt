@@ -123,6 +123,7 @@ Bot: 5
 Ziel: beste_jodel
 Bot: 5
 
+<<<<<<< HEAD
 [01.08.2021 , 12:25:29]
 Ziel: beste_jodel
 Bot: 6
@@ -130,3 +131,154 @@ Bot: 6
 [01.08.2021 , 12:27:08]
 Ziel: beste_jodel
 Bot: 2
+=======
+[01.08.2021 , 12:48:02]
+Ziel: trichterdraws
+Bot: 6
+
+[01.08.2021 , 13:03:47]
+Ziel: trichterdraws
+Bot: 6
+
+[01.08.2021 , 13:04:56]
+Ziel: trichterdraws
+Bot: 6
+
+[01.08.2021 , 13:05:47]
+Ziel: trichterdraws
+Bot: 1
+
+[01.08.2021 , 13:08:04]
+Ziel: trichterdraws
+Bot: 4
+
+[01.08.2021 , 13:09:48]
+Ziel: trichterdraws
+Bot: 4
+
+[01.08.2021 , 13:17:30]
+Ziel: trichterdraws
+Bot: 2
+
+[01.08.2021 , 13:19:19]
+Ziel: trichterdraws
+Bot: 3
+
+[01.08.2021 , 13:28:59]
+Ziel: trichterdraws
+Bot: 4
+Pictures liked: 19
+Comments posted: 5
+
+[01.08.2021 , 13:39:52]
+Ziel: trichterdraws
+Bot: 4
+Pictures liked: 4
+
+[01.08.2021 , 13:41:31]
+Ziel: trichterdraws
+Bot: 6
+Pictures liked: 4
+
+[01.08.2021 , 13:42:50]
+Ziel: trichterdraws
+Bot: 1
+Pictures liked: 4
+
+[01.08.2021 , 13:46:44]
+Ziel: trichterdraws
+Bot: 5
+Pictures liked: 4
+
+[01.08.2021 , 13:49:07]
+Ziel: trichterdraws
+Bot: 4
+Pictures liked: 4
+
+[01.08.2021 , 14:08:50]
+Ziel: trichterdraws
+Bot: 5
+Pictures liked: 4
+
+[01.08.2021 , 14:10:44]
+Ziel: trichterdraws
+Bot: 3
+Pictures liked: 4
+
+
+[01.08.2021 , 14:13:01]
+Ziel: trichterdraws
+Bot: 6
+Pictures liked: 4
+
+
+[01.08.2021 , 14:19:26]
+Ziel: trichterdraws
+Bot: 3
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:19:58]
+Ziel: trichterdraws
+Bot: 1
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:20:30]
+Ziel: trichterdraws
+Bot: 5
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:21:01]
+Ziel: trichterdraws
+Bot: 6
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:21:38]
+Ziel: trichterdraws
+Bot: 4
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:22:14]
+Ziel: trichterdraws
+Bot: 2
+Pictures liked: 1
+Comments posted: 1
+Comment topic: 
+
+[01.08.2021 , 14:25:41]
+Ziel: trichterdraws
+Bot: 5
+Pictures liked: 1
+Comments posted: 1
+Comment topic: Kunst
+
+[01.08.2021 , 14:30:59]
+Ziel: trichterdraws
+Bot: 1
+Pictures liked: 1
+Comments posted: 1
+Comment topic: Kunst
+
+[01.08.2021 , 14:31:41]
+Ziel: trichterdraws
+Bot: 6
+Pictures liked: 1
+Comments posted: 1
+Comment topic: Kunst
+
+[01.08.2021 , 14:33:02]
+Ziel: trichterdraws
+Bot: 4
+Pictures liked: 1
+Comments posted: 1
+Comment topic: Kunst
+>>>>>>> 14bf7d00f45032732c23a0e77f047f75f9a82c70

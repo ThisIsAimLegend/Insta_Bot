@@ -1,20 +1,24 @@
 import time
 from sys import exit
 import test_file as tf
-#import actions.insta_bot as ib
 from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
 #------------------------------------------------------
 #Ziel-Account hier angeben
-target_account = ["beste_jodel"]
+target_account = ["trichterdraws"]
 #Menge der Bot Accounts hier angeben
-bot_count = 1 
+bot_count = 1
 #Menge der Bilder die einen Like bekommen sollen
-like_count = 4
+like_count = 1
+#Menge der Bilder die kommentiert werden sollen
+comment_count = 1
+#Menge der Kommentare pro Bild
+comments_per_picture = 2
 #ONLY WORKS WITH "comments"!!!
 #Thema der Kommentare angeben
-topic = "Sport"
+topic = "Kunst"
+
 #------------------------------------------------------
 
 def one():
@@ -28,7 +32,7 @@ def one():
         for element in target_account:
             tf.SearchAccount(element)
             tf.ClickOnAccount()
-            tf.botting_actions(element,bot,topic,like_count)
+            tf.botting_actions(element,bot,topic,like_count,comment_count,comments_per_picture)
             tf.goBack()
             time.sleep(1)
         time.sleep(1)
@@ -46,7 +50,7 @@ def two():
         for element in target_account:
             ib.SearchAccount(element)
             ib.ClickOnAccount()
-            ib.botting_actions(element,bot,topic)
+            ib.botting_actions(element,bot,topic,like_count,comment_count,comments_per_picture)
             ib.goBack()
             time.sleep(1)
         time.sleep(1)
