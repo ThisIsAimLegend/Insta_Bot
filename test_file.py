@@ -70,8 +70,6 @@ def check_if_follow():
         following()
     pass
 
-
-
 #signs up into the selected bot account
 def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
