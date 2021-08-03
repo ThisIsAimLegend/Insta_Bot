@@ -289,3 +289,24 @@ Bot: 5
 Pictures liked: 1
 Comments posted: 1
 Comment topic: Kunst
+
+[01.08.2021 , 19:41:56]
+Ziel: harry styles
+Bot: 5
+Pictures liked: 5
+Comments posted: 4
+Comment topic: Musik
+
+[01.08.2021 , 19:42:58]
+Ziel: harry styles
+Bot: 4
+Pictures liked: 5
+Comments posted: 4
+Comment topic: Musik
+
+[01.08.2021 , 19:43:54]
+Ziel: harry styles
+Bot: 3
+Pictures liked: 1
+Comments posted: 1
+Comment topic: Musik

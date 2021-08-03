@@ -35,17 +35,24 @@ Kunst = {
     "ohaa": []
 }
 
+Musik = {
+    "super": [],
+    "love ur music": [],
+    "yeeees harry": []
+}
+
 #\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 comDict = {
-    "topic" : [Freunde,Girls,Sport,Influencer,Kunst],
-    "topic_index": ["Freunde","Grils","Sport","Influencer","Kunst"],
+    "topic" : [Freunde,Girls,Sport,Influencer,Kunst,Musik],
+    "topic_index": ["Freunde","Grils","Sport","Influencer","Kunst","Musik" ],
 
     "Freunde_emoji": ["💪🏼","🔥","👌🏼",""],
     "Girls_emoji": ["😍","❤️"],
     "Sport_emoji": ["","💪🏼","🔥","🦍","🏋️"],
     "Influencer_emoji": [],
-    "Kunst_emoji": ["👍","💖","🤗"]
+    "Kunst_emoji": ["👍","💖","🤗"],
+    "Musik_emoji": ["😍", "🤗", ""]
 }
 
 

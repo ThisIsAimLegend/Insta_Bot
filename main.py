@@ -6,7 +6,7 @@ import insta_bot as ib
 
 #------------------------------------------------------
 #Ziel-Account hier angeben
-target_account = ["trichterdraws"]
+target_account = ["harry styles"]
 #Menge der Bot Accounts hier angeben
 bot_count = 1
 #Menge der Bilder die einen Like bekommen sollen
@@ -14,10 +14,10 @@ like_count = 1
 #Menge der Bilder die kommentiert werden sollen
 comment_count = 1
 #Menge der Kommentare pro Bild
-comments_per_picture = 2
+comments_per_picture = 1
 #ONLY WORKS WITH "comments"!!!
 #Thema der Kommentare angeben
-topic = "Kunst"
+topic = "Musik"
 
 #------------------------------------------------------
 

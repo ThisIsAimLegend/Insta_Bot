@@ -36,6 +36,8 @@ def pickRandomEmoji(topic):
         emoji_list = comments.comDict["Influencer_emoji"]
     elif topic == "Kunst":
         emoji_list = comments.comDict["Kunst_emoji"]
+    elif topic == "Musik":
+        emoji_list = comments.comDict["Musik_emoji"]
     else:
         print("Type a topic that already exists!")
         return ""
