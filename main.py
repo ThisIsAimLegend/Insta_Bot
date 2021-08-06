@@ -56,3 +56,6 @@ def two():
         time.sleep(1)
         ib.EndProgram(bot)
     print("Programm fertig ausgeführt")
+
+
+one()
