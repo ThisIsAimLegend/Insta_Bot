@@ -1,44 +1,25 @@
 import time
 from sys import exit
 import test_file as tf
-from actions.structural_actions import chooseAccounts
 import insta_bot as ib
 
-#------------------------------------------------------
-#Ziel-Account hier angeben
-target_account = ["trichterdraws"]
-#Menge der Bot Accounts hier angeben
-bot_count = 1
-#Menge der Bilder die einen Like bekommen sollen
-like_count = 1
-#Menge der Bilder die kommentiert werden sollen
-comment_count = 1
-#Menge der Kommentare pro Bild
-comments_per_picture = 2
-#ONLY WORKS WITH "comments"!!!
-#Thema der Kommentare angeben
-topic = "Kunst"
-#------------------------------------------------------
-
-def one():
-    bot_account = chooseAccounts(bot_count)
-    for bot in bot_account:
-        tf.open_browser()
-        tf.noCookies()
-        tf.FormSigner(bot)
-        tf.NoPasswordSave()
-        tf.NoNotifications()
-        for element in target_account:
-            tf.SearchAccount(element)
-            tf.ClickOnAccount()
-            tf.botting_actions(element,bot,topic,like_count,comment_count,comments_per_picture)
-            tf.goBack()
-            time.sleep(1)
+def one(target_account, bot, like_count, comment_count, cpp, topic):
+    tf.open_browser()
+    tf.noCookies()
+    tf.FormSigner(bot)
+    tf.NoPasswordSave()
+    tf.NoNotifications()
+    for element in target_account:
+        tf.SearchAccount(element)
+        tf.ClickOnAccount()
+        tf.botting_actions(element,bot,topic,like_count,comment_count,cpp)
+        tf.goBack()
         time.sleep(1)
-        tf.EndProgram(bot)
-    print("Programm fertig ausgeführt")
+    time.sleep(1)
+    tf.EndProgram(bot)
 
-def two():
+
+def two(target_account, bot_count, like_count, comment_count, cpp, topic):
     bot_account = chooseAccounts(bot_count)
     for bot in bot_account:
         ib.open_browser()
@@ -49,12 +30,9 @@ def two():
         for element in target_account:
             ib.SearchAccount(element)
             ib.ClickOnAccount()
-            ib.botting_actions(element,bot,topic,like_count,comment_count,comments_per_picture)
+            ib.botting_actions(element,bot,topic,like_count,comment_count,cpp)
             ib.goBack()
             time.sleep(1)
         time.sleep(1)
         ib.EndProgram(bot)
     print("Programm fertig ausgeführt")
-
-
-one()
