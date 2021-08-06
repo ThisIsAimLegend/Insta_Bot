@@ -18,6 +18,7 @@ comments_per_picture = 2
 #ONLY WORKS WITH "comments"!!!
 #Thema der Kommentare angeben
 topic = "Kunst"
+
 #------------------------------------------------------
 
 def one():
