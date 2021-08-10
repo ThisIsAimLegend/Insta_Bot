@@ -3,7 +3,7 @@ from sys import exit
 import test_file as tf
 import insta_bot as ib
 
-def one(target_account, bot, like_count, comment_count, cpp, topic):
+def experimental(target_account, bot, like_count, comment_count, cpp, topic, ll):
     tf.open_browser()
     tf.noCookies()
     tf.FormSigner(bot)
@@ -12,27 +12,36 @@ def one(target_account, bot, like_count, comment_count, cpp, topic):
     for element in target_account:
         tf.SearchAccount(element)
         tf.ClickOnAccount()
-        tf.botting_actions(element,bot,topic,like_count,comment_count,cpp)
+        tf.botting_actions(element,bot,topic,like_count,comment_count,cpp,ll)
         tf.goBack()
         time.sleep(1)
     time.sleep(1)
     tf.EndProgram(bot)
 
 
-def two(target_account, bot_count, like_count, comment_count, cpp, topic):
-    bot_account = chooseAccounts(bot_count)
-    for bot in bot_account:
-        ib.open_browser()
-        ib.noCookies()
-        ib.FormSigner(bot)
-        ib.NoPasswordSave()
-        ib.NoNotifications()
-        for element in target_account:
-            ib.SearchAccount(element)
-            ib.ClickOnAccount()
-            ib.botting_actions(element,bot,topic,like_count,comment_count,cpp)
-            ib.goBack()
-            time.sleep(1)
+def bot(target_account, bot, like_count, comment_count, cpp, topic, ll):
+    ib.open_browser()
+    ib.noCookies()
+    ib.FormSigner(bot)
+    ib.NoPasswordSave()
+    ib.NoNotifications()
+    for element in target_account:
+        ib.SearchAccount(element)
+        ib.ClickOnAccount()
+        ib.botting_actions(element,bot,topic,like_count,comment_count,cpp,ll)
+        ib.goBack()
         time.sleep(1)
-        ib.EndProgram(bot)
-    print("Programm fertig ausgeführt")
+    time.sleep(1)
+    ib.EndProgram(bot)
+
+def test(target_account, bot, like_count, comment_count, cpp, topic, ll):
+    tf.open_browser()
+    tf.noCookies()
+    tf.FormSigner(bot)
+    tf.NoPasswordSave()
+    tf.NoNotifications()
+    tf.SearchAccount(target_account)
+    tf.ClickOnAccount()
+    tf.ClickOnPicture()
+    tf.like_pictures(like_count)
+    tf.EndProgram(bot)
