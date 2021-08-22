@@ -20,8 +20,7 @@ if __name__ == "__main__":
 
             #Information for OptionMenu
             from actions.comments import comDict
-            topics = tuple(comDict["topic_index"])
-            print(topics)
+            topics = list(comDict["topic_index"])
                 
             #content of GUI
             root.title("Instagram Bot")
@@ -31,7 +30,7 @@ if __name__ == "__main__":
             command3 = Label(root, text="number of likes", width=elem_width,relief=rl)
             command4 = Label(root, text="number of comments", width=elem_width,relief=rl)
             command5 = Label(root, text="number of comments p.p.", width=elem_width,relief=rl)
-            command6 = OptionMenu(root,selected_topic,topics[0],*topics, width=elem_width,relief=rl)
+            command6 = Label(root,text="topic", width=elem_width,relief=rl)
             dark = Label(root, text="Dark Mode")
             on = Button(root, text="ON", command=self.darkMode,width=input_width)
             off = Button(root, text="OFF", command=self.lightMode,width=input_width)
@@ -40,7 +39,7 @@ if __name__ == "__main__":
             like_num = Entry(root,width=input_width)
             com_num = Entry(root,width=input_width)
             cpp = Entry(root,width=input_width)
-            topic = Entry(root,width=input_width)
+            #topic = OptionMenu(root,variable=selected_topic,value="du pic",width=input_width)
             start = Button(root, text="START", command=self.output)
             close = Button(root,text="CLOSE", command=root.destroy)
 
@@ -64,7 +63,7 @@ if __name__ == "__main__":
             like_num.grid(row=4,column=2,sticky="nesw")
             com_num.grid(row=4,column=3,sticky="nesw")
             cpp.grid(row=4,column=4,sticky="nesw")
-            topic.grid(row=4,column=5,sticky="nesw")
+            #topic.grid(row=4,column=5,sticky="nesw")
             start.grid(row=5, column=0,columnspan=6,sticky="nesw",pady=(10,0))
             close.grid(row=6,column=0,columnspan=6,sticky="nesw")
 
@@ -84,7 +83,7 @@ if __name__ == "__main__":
             self.like_num = like_num
             self.com_num = com_num
             self.cpp = cpp
-            self.topic = topic
+            #self.topic = topic
             self.start = start
             self.close = close
 
