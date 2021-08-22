@@ -4,8 +4,28 @@ import time
 
 def output():
     from ProcessManagement import ProcessManager
-    print([acc.get()],bot_num.get(), like_num.get(), com_num.get(), cpp.get(), topic.get())
-    ProcessManager([acc.get()],int(bot_num.get()), int(like_num.get()), int(com_num.get()), int(cpp.get()), topic.get())
+    account = acc.get()
+    account = account.split(",")
+    bots = bot_num.get()
+    likes = like_num.get()
+    comments = com_num.get()
+    comsperpost = cpp.get()
+    topics = topic.get()
+    if account == "":
+        print("You need to select a tageted account")
+    elif bots == "":
+        bots = None
+    elif likes == "":
+        likes = None
+    elif comments == 0:
+        ProcessManager(account,bots,likes,comments,0,"")
+    else:
+        pass
+    ProcessManager(account,bots,likes,comments,comsperpost,topics)
+
+def restart():
+    root.destroy()
+
 
 if __name__ == "__main__":
     #creating standard sizes
@@ -90,7 +110,7 @@ if __name__ == "__main__":
     command3 = Label(root, text="number of likes", width=elem_width,relief=rl)
     command4 = Label(root, text="number of comments", width=elem_width,relief=rl)
     command5 = Label(root, text="number of comments p.p.", width=elem_width,relief=rl)
-    command6 = Label(root, text="topic", width=elem_width,relief=rl)
+    command6 = OptionMenu(root, "Kunst","Sport","Freunde","Girls","Influencer", width=elem_width,relief=rl)
     dark = Label(root, text="Dark Mode")
     on = Button(root, text="ON", command=darkMode,width=input_width)
     off = Button(root, text="OFF", command=lightMode,width=input_width)

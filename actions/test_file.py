@@ -206,6 +206,7 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
         time.sleep(1)
         excel.AddTargetToMemory(target,bot)
     else:
+        print("No pictures found")
         check_if_follow()
         time.sleep(2)
         driver.quit()
