@@ -1,4 +1,4 @@
-import string
+import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -22,8 +22,10 @@ def goBack():
 def like_pictures(likes):
     for i in range(likes):
         act = ActionChains(driver)
-        like = WebDriverWait(driver, 7).until(EC.presence_of_element_located((By.CLASS_NAME,'ZyFrc')))
-        act.double_click(like).perform()
+        try:
+            driver.find_element_by_css_selector('svg[aria-label="Gefällt mir nicht mehr"]')
+        except:
+            driver.find_elements_by_class_name("wpO6b")[2].click()
         time.sleep(0.5)
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
@@ -53,13 +55,9 @@ def ClickOnPicture():
 #NOT READY!!!
 #sends a follow request to the targetted account
 def following():
-    keyboard.press_and_release("f5")
+    driver.refresh()
     time.sleep(3)
-    #keyboard.press_and_release("tab")
-    #time.sleep(0.1)
-    keyboard.press_and_release("tab")
-    time.sleep(0.1)
-    keyboard.press_and_release("enter")
+    driver.find_element_by_class_name("y3zKF").click()
     time.sleep(0.5)
 
 #check if already follows target account
@@ -74,6 +72,7 @@ def check_if_follow():
 def sign_up(name, pw):
     driver.find_element_by_name("username").send_keys(name)
     driver.find_element_by_name("password").send_keys(pw)
+    time.sleep(2)
     WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, "eGOV_"))).click()
 
 def find_comment():
@@ -87,8 +86,10 @@ def send_comment(topic,cpp):
     else:
         for i in range(cpp):
             comment = comments.returnFullComment(topic)
+            print(comment)
             time.sleep(1)
-            driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            #driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            driver.find_element_by_class_name("Ypffh").click()
             time.sleep(0.5)
             keyboard.write(comment)
             keyboard.press_and_release("Enter")
@@ -101,9 +102,9 @@ def comment_loop(topic,comment_count,cpp):
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
         except:
-            print("Alle Kommentare abgeschickt")
             break
         time.sleep(1)
+    print("Alle Kommentare abgeschickt")
 
 #creates the log as a list
 def create_log(target, bot, topic, like_count, comment_count):
@@ -116,26 +117,34 @@ def create_log(target, bot, topic, like_count, comment_count):
     log.append("Pictures liked: " + str(like_count))
     log.append("Comments posted: " + str(comment_count))
     log.append("Comment topic: " + str(topic))
+    print(log)
     return log
     
 #creates a log in "bot_log.txt"
-def logging(log):
+def logging(log, logLock):
     print(log)
+    logLock.acquire()
+
     file = open("data/bot_log.txt","a")
     file.write("\n")
     for row in log:
         file.write(row)
         file.write("\n")
     file.close()
+    logLock.release()
 
 #-------------------------------------------------------------------------------------------------
 #opens the browser on www.instagram.com
 def open_browser():
     global driver
-    driver = webdriver.Chrome("chromedriver.exe")
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    driver = webdriver.Chrome("chromedriver.exe",options=options)
     driver.get("https://www.instagram.com/")
     time.sleep(0.5)
-    driver.maximize_window()
+    positions = [0,640]
+    pos = random.choice(positions)
+    driver.set_window_position(pos,0)
 
 #decline cookies
 def noCookies():
@@ -161,7 +170,7 @@ def NoNotifications():
 #searches for targetted account
 def SearchAccount(target_account):
     WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR,'input[placeholder="Suchen"]'))).send_keys(target_account)
-    time.sleep(1)
+    time.sleep(2)
 
 #clicks on first suggested account
 def ClickOnAccount():
@@ -170,7 +179,7 @@ def ClickOnAccount():
     time.sleep(2)
 
 #clicks on the latest picture on this account
-def botting_actions(target,bot,topic,likes,comment_count,cpp):
+def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
     try:
         select_picture = driver.find_element_by_class_name("eLAPa")
         select_picture = True
@@ -180,7 +189,7 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp):
         check_if_follow()
         ClickOnStory()
         log = create_log(target,bot, topic, likes, comment_count)
-        logging(log)
+        logging(log,ll)
         if likes == None:
             pass
         else:
@@ -197,11 +206,11 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp):
         time.sleep(1)
         excel.AddTargetToMemory(target,bot)
     else:
+        print("No pictures found")
         check_if_follow()
         time.sleep(2)
         driver.quit()
 
 #stops the program and closes the browser window
-def EndProgram(bot):
-    print("Bot",bot,"fertig")
+def EndProgram():
     driver.quit()

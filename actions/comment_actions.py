@@ -53,5 +53,5 @@ def returnFullComment(topic):
         str(comment)
         emoji = str(pickRandomEmoji(topic))
         full_comment = comment + emoji
-        print(full_comment)
+        #print(full_comment)
         return full_comment
