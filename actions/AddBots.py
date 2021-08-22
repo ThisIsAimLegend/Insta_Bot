@@ -3,9 +3,9 @@ from openpyxl.styles.borders import Border, Side
 from sys import exit
 
 #Account that should be deleted
-new_bot = "aha lul"
-pw = "aha lul"
-email = "aha@lul"
+new_bot = "60"
+pw = "test.python"
+email = "checkmeout1337@gmail.com"
 
 
 def  check_memory():

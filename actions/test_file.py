@@ -86,8 +86,10 @@ def send_comment(topic,cpp):
     else:
         for i in range(cpp):
             comment = comments.returnFullComment(topic)
+            print(comment)
             time.sleep(1)
-            driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            #driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            driver.find_element_by_class_name("Ypffh").click()
             time.sleep(0.5)
             keyboard.write(comment)
             keyboard.press_and_release("Enter")
@@ -100,9 +102,9 @@ def comment_loop(topic,comment_count,cpp):
         try:
             driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
         except:
-            print("Alle Kommentare abgeschickt")
             break
         time.sleep(1)
+    print("Alle Kommentare abgeschickt")
 
 #creates the log as a list
 def create_log(target, bot, topic, like_count, comment_count):
@@ -115,6 +117,7 @@ def create_log(target, bot, topic, like_count, comment_count):
     log.append("Pictures liked: " + str(like_count))
     log.append("Comments posted: " + str(comment_count))
     log.append("Comment topic: " + str(topic))
+    print(log)
     return log
     
 #creates a log in "bot_log.txt"
@@ -139,7 +142,7 @@ def open_browser():
     driver = webdriver.Chrome("chromedriver.exe",options=options)
     driver.get("https://www.instagram.com/")
     time.sleep(0.5)
-    positions = [0,640,1280]
+    positions = [0,640]
     pos = random.choice(positions)
     driver.set_window_position(pos,0)
 
@@ -208,6 +211,5 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
         driver.quit()
 
 #stops the program and closes the browser window
-def EndProgram(bot):
-    print("Bot",bot,"fertig")
+def EndProgram():
     driver.quit()

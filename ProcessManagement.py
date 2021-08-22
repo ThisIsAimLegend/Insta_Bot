@@ -2,29 +2,34 @@ import multiprocessing
 import time
 
 from actions.structural_actions import chooseAccounts
-import main
-import GUI_connector as GI
+import actions.main as main
+
 
 #imports the Botlist for process division and bot signing
-def getBotList():
-    bot_count = GI.getBotCount()
+def getBotList(bot_count):
     bot_list = chooseAccounts(bot_count)
     return bot_list
 
 #redirects the created bots to their actions
-def botProcess(bot,logLock):
-    target, like, comment, cpp, topic = GI.collectAllInputs()
-    main.bot(target, bot, like, comment, cpp, topic, logLock)
+def botProcess(bot,logLock,target,like,comment,cpp,topic):
+    main.experimental(target, bot, like, comment, cpp, topic, logLock)
 
-def ProcessManager():
+def ProcessManager(acc, bot_num, like_num, com_num, cpp,topic):
+    start_time = time.time()
     logManager = multiprocessing.Manager()
     logLock = logManager.Lock()
-    bot_list = getBotList()
-    pool = multiprocessing.Pool(processes=3)
+    bot_list = getBotList(bot_num)
+    if bot_num <= 3:
+        procs = bot_num
+    else:
+        procs = 3
+    pool = multiprocessing.Pool(processes=procs)
     for bot in bot_list:
-        pool.apply_async(botProcess,[bot,logLock])
+        pool.apply_async(botProcess,[bot,logLock,acc,like_num,com_num,cpp,topic])
+    time.sleep(1)
     pool.close()
     pool.join()
+    print("Finished bots in",time.time()-start_time,"seconds")
 
 '''
 #creates an independent process for every bot in the botlist

@@ -1,22 +1,28 @@
 import time
 from sys import exit
-import test_file as tf
-import insta_bot as ib
+import actions.test_file as tf
+import actions.insta_bot as ib
 
 def experimental(target_account, bot, like_count, comment_count, cpp, topic, ll):
-    tf.open_browser()
-    tf.noCookies()
-    tf.FormSigner(bot)
-    tf.NoPasswordSave()
-    tf.NoNotifications()
-    for element in target_account:
-        tf.SearchAccount(element)
-        tf.ClickOnAccount()
-        tf.botting_actions(element,bot,topic,like_count,comment_count,cpp,ll)
-        tf.goBack()
+    try:
+        tf.open_browser()
+        tf.noCookies()
+        tf.FormSigner(bot)
+        tf.NoPasswordSave()
+        tf.NoNotifications()
+        for element in target_account:
+            tf.SearchAccount(element)
+            tf.ClickOnAccount()
+            tf.botting_actions(element,bot,topic,like_count,comment_count,cpp,ll)
+            tf.goBack()
+            time.sleep(1)
         time.sleep(1)
-    time.sleep(1)
-    tf.EndProgram(bot)
+        tf.EndProgram()
+        print("Bot",bot,"fertig")
+    except:
+        print("Bot",bot,"failed")
+        tf.EndProgram()
+        
 
 
 def bot(target_account, bot, like_count, comment_count, cpp, topic, ll):

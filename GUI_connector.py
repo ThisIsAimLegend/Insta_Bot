@@ -16,15 +16,8 @@ comments_per_picture = 0
 topic = ""
 #------------------------------------------------------
 
-def getGUIInput():
-    #Verbindung zu GUI.py zum auslesen der Entry Widgets
-    pass
-
-def collectAllInputs():
-    return target_account, like_count, comment_count, comments_per_picture, topic
-
 def getBotCount():
     return bot_count
 
 if __name__ == "__main__":
-    getGUIInput()
+    pass

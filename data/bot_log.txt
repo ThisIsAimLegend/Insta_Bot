@@ -729,3 +729,185 @@ Bot: 3
 Pictures liked: 1
 Comments posted: 0
 Comment topic: Kunst
+
+[20.08.2021 , 00:40:08]
+Ziel: t
+Bot: 5
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 00:47:00]
+Ziel: trichterdraws
+Bot: 2
+Pictures liked: 1
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 01:07:19]
+Ziel: trichterdraws
+Bot: 3
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 11:55:04]
+Ziel: trichterdraws
+Bot: 2
+Pictures liked: 1
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 11:56:41]
+Ziel: trichterdraws
+Bot: 6
+Pictures liked: 1
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 11:56:44]
+Ziel: trichterdraws
+Bot: 9
+Pictures liked: 1
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 12:00:58]
+Ziel: trichterdraws
+Bot: 9
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 12:01:00]
+Ziel: trichterdraws
+Bot: 5
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 12:19:58]
+Ziel: dertrichter_jr
+Bot: 4
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Kunst
+
+[20.08.2021 , 12:45:09]
+Ziel: dertrichter_jr
+Bot: 5
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Ferunde
+
+[20.08.2021 , 21:25:04]
+Ziel: vinc.skl
+Bot: 7
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:26:30]
+Ziel: vince_skl
+Bot: 5
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:26:35]
+Ziel: vince_skl
+Bot: 3
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:33:35]
+Ziel: dertrichter_jr
+Bot: 4
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Sport
+
+[20.08.2021 , 21:35:22]
+Ziel: nba
+Bot: 3
+Pictures liked: 2
+Comments posted: 0
+Comment topic: Sport
+
+[20.08.2021 , 21:41:13]
+Ziel: vince_skl
+Bot: 11
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:41:13]
+Ziel: vince_skl
+Bot: 10
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:45:34]
+Ziel: vince_skl
+Bot: 3
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:45:52]
+Ziel: vince_skl
+Bot: 1
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:48:11]
+Ziel: vince_skl
+Bot: 5
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:48:12]
+Ziel: vince_skl
+Bot: 9
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:50:24]
+Ziel: vince_skl
+Bot: 6
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:57:00]
+Ziel: vince_skl
+Bot: 5
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 21:57:03]
+Ziel: vince_skl
+Bot: 2
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 22:18:13]
+Ziel: vince_skl
+Bot: 8
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
+
+[20.08.2021 , 22:18:25]
+Ziel: vince_skl
+Bot: 3
+Pictures liked: 2
+Comments posted: 1
+Comment topic: Sport
