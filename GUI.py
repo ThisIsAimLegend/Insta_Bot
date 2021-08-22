@@ -170,7 +170,7 @@ if __name__ == "__main__":
     command3 = Label(root, text="number of likes", width=elem_width,relief=rl)
     command4 = Label(root, text="number of comments", width=elem_width,relief=rl)
     command5 = Label(root, text="number of comments p.p.", width=elem_width,relief=rl)
-    command6 = OptionMenu(root, "Kunst","Sport","Freunde","Girls","Influencer", width=elem_width,relief=rl)
+    command6 = Label(root, text="topic", width=elem_width,relief=rl)
     dark = Label(root, text="Dark Mode")
     on = Button(root, text="ON", command=darkMode,width=input_width)
     off = Button(root, text="OFF", command=lightMode,width=input_width)
