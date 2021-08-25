@@ -1,10 +1,14 @@
 #import excel_actions as ea
-from .excel_actions import getNumberofAccounts
+import datetime as dt
 from random import sample, choice
 from . import comments
+import mariadb
+import sys
+import keyring
 
 #chooses the accounts for a given count of bots
 def chooseAccounts(count):
+    from .excel_actions import getNumberofAccounts
     max_count = int(getNumberofAccounts())
     count = int(count)
     if count <= max_count:
@@ -37,3 +41,45 @@ def getPostTags(driver):
         i += 1
     print(tag_list)
     return tag_list
+
+#creates the log as a list
+def create_log(target,bot_name, topic, like_count, comment_count):
+    timer = dt.datetime.now()
+    timer = timer.strftime("[%d.%m.%Y , %H:%M:%S]")
+    log = []
+    log.append(timer)
+    log.append("Ziel: " + str(target))
+    log.append("Bot: " + str(bot_name))
+    log.append("Pictures liked: " + str(like_count))
+    log.append("Comments posted: " + str(comment_count))
+    log.append("Comment topic: " + str(topic))
+    print(log)
+    log = (target,bot_name,topic,like_count,comment_count)
+    return log
+
+class DB_Connection:
+    def __init__(self,logLock):
+        connection = mariadb.connect(
+                user="root",
+                password=keyring.get_password("databank","root"),
+                host="localhost",
+                port=3306,
+                database="InstaBot"
+            )
+        cur = connection.cursor()
+
+        self.connection = connection
+        self.cur = cur
+        self.logLock = logLock
+
+    def logging(self,target,bot_name, topic, like_count, comment_count):
+        if self.logLock != None:
+            self.logLock.acquire()
+        self.cur.execute("INSERT INTO log (target,bot,likes,comments,topic) VALUES (?,?,?,?,?)",(target,bot_name,like_count,comment_count,topic))
+        self.connection.commit()
+        self.connection.close()
+        if self.logLock != None:
+            self.logLock.release()
+
+if __name__ == "__main__":
+    pass
