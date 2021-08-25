@@ -6,7 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
-import keyboard
 import datetime as dt
 
 import actions.excel_actions as excel
@@ -22,6 +21,7 @@ def goBack():
 def like_pictures(likes):
     for i in range(likes):
         act = ActionChains(driver)
+        time.sleep(1)
         try:
             driver.find_element_by_css_selector('svg[aria-label="Gefällt mir nicht mehr"]')
         except:
@@ -57,7 +57,13 @@ def ClickOnPicture():
 def following():
     driver.refresh()
     time.sleep(3)
-    driver.find_element_by_class_name("y3zKF").click()
+    try:
+        driver.find_element_by_class_name("_6VtSN").click() #y3zKF
+    except:
+        try:
+            driver.find_element_by_class_name("y3zKF").click()
+        except:
+            print("Not able to follow!")
     time.sleep(0.5)
 
 #check if already follows target account
@@ -78,61 +84,6 @@ def sign_up(name, pw):
 def find_comment():
    tags = structure.getPostTags(driver)
 
-#posts random comment from topic list
-def send_comment(topic,cpp):
-    comment_test = comments.returnFullComment(topic)
-    if comment_test == None:
-        pass
-    else:
-        for i in range(cpp):
-            comment = comments.returnFullComment(topic)
-            print(comment)
-            time.sleep(1)
-            #driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
-            driver.find_element_by_class_name("Ypffh").click()
-            time.sleep(0.5)
-            keyboard.write(comment)
-            keyboard.press_and_release("Enter")
-            time.sleep(1)
-
-def comment_loop(topic,comment_count,cpp):
-    for i in range(comment_count):
-        send_comment(topic,cpp)
-        time.sleep(0.5)
-        try:
-            driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
-        except:
-            break
-        time.sleep(1)
-    print("Alle Kommentare abgeschickt")
-
-#creates the log as a list
-def create_log(target, bot, topic, like_count, comment_count):
-    timer = dt.datetime.now()
-    timer = timer.strftime("[%d.%m.%Y , %H:%M:%S]")
-    log = []
-    log.append(timer)
-    log.append("Ziel: " + str(target))
-    log.append("Bot: " + str(bot))
-    log.append("Pictures liked: " + str(like_count))
-    log.append("Comments posted: " + str(comment_count))
-    log.append("Comment topic: " + str(topic))
-    print(log)
-    return log
-    
-#creates a log in "bot_log.txt"
-def logging(log, logLock):
-    print(log)
-    logLock.acquire()
-
-    file = open("data/bot_log.txt","a")
-    file.write("\n")
-    for row in log:
-        file.write(row)
-        file.write("\n")
-    file.close()
-    logLock.release()
-
 #-------------------------------------------------------------------------------------------------
 #opens the browser on www.instagram.com
 def open_browser():
@@ -142,7 +93,7 @@ def open_browser():
     driver = webdriver.Chrome("chromedriver.exe",options=options)
     driver.get("https://www.instagram.com/")
     time.sleep(0.5)
-    positions = [0,640]
+    positions = [0,960]
     pos = random.choice(positions)
     driver.set_window_position(pos,0)
 
@@ -153,7 +104,9 @@ def noCookies():
 
 #signs into bot account
 def FormSigner(bc):
+    global bot_name
     name , pw = excel.getAccount(bc)
+    bot_name = name
     sign_up(name, pw)
     time.sleep(4)
 
@@ -187,9 +140,11 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
         select_picture = False
     if select_picture == True:
         check_if_follow()
+        time.sleep(2)
         ClickOnStory()
-        log = create_log(target,bot, topic, likes, comment_count)
-        logging(log,ll)
+        log = structure.create_log(target, bot_name, topic, likes, comment_count)
+        logger = structure.DB_Connection(ll)
+        logger.logging(target,bot_name,topic,likes,comment_count)
         if likes == None:
             pass
         else:
@@ -202,9 +157,9 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
             pass
         else:
             ClickOnPicture()
-            comment_loop(topic,comment_count,cpp)
+            comments.comment_loop(driver,topic,comment_count,cpp,ll)
         time.sleep(1)
-        excel.AddTargetToMemory(target,bot)
+        #excel.AddTargetToMemory(target,bot)
     else:
         print("No pictures found")
         check_if_follow()
