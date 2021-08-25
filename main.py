@@ -1,8 +1,8 @@
 import time
 from sys import exit
-import test_file as tf
+import actions.test_file as tf
 from actions.structural_actions import chooseAccounts
-import insta_bot as ib
+import actions.insta_bot as ib
 
 #------------------------------------------------------
 #Ziel-Account hier angeben
