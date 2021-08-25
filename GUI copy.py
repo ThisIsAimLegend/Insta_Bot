@@ -13,14 +13,15 @@ if __name__ == "__main__":
 
             #creating the GUI
             root = Tk()
-            selected_topic = StringVar(root)
 
             defaultbg = root.cget('bg')
             self.defaultbg = defaultbg
 
             #Information for OptionMenu
             from actions.comments import comDict
-            topics = list(comDict["topic_index"])
+            selected_topic = StringVar(root)
+            topics = comDict["topic_index"]
+            selected_topic.set(topics[0])
                 
             #content of GUI
             root.title("Instagram Bot")
@@ -39,12 +40,14 @@ if __name__ == "__main__":
             like_num = Entry(root,width=input_width)
             com_num = Entry(root,width=input_width)
             cpp = Entry(root,width=input_width)
-            #topic = OptionMenu(root,variable=selected_topic,value="du pic",width=input_width)
+            topic = OptionMenu(root,selected_topic,*topics)
+            topic.config(width=input_width,bg="white")
+            topic["menu"].config(bg="white",fg="black")
             start = Button(root, text="START", command=self.output)
             close = Button(root,text="CLOSE", command=root.destroy)
 
             #styling of GUI
-            root.geometry("900x200")
+            root.geometry("950x200")
             title["font"]="Ariel", 20
 
             #placing elements
@@ -63,7 +66,7 @@ if __name__ == "__main__":
             like_num.grid(row=4,column=2,sticky="nesw")
             com_num.grid(row=4,column=3,sticky="nesw")
             cpp.grid(row=4,column=4,sticky="nesw")
-            #topic.grid(row=4,column=5,sticky="nesw")
+            topic.grid(row=4,column=5,sticky="nesw")
             start.grid(row=5, column=0,columnspan=6,sticky="nesw",pady=(10,0))
             close.grid(row=6,column=0,columnspan=6,sticky="nesw")
 
@@ -83,7 +86,7 @@ if __name__ == "__main__":
             self.like_num = like_num
             self.com_num = com_num
             self.cpp = cpp
-            #self.topic = topic
+            self.topic = topic
             self.start = start
             self.close = close
 
@@ -116,7 +119,8 @@ if __name__ == "__main__":
             self.like_num.configure(bg="gray50",fg="white")
             self.com_num.configure(bg="gray50",fg="white")
             self.cpp.configure(bg="gray50",fg="white")
-            self.topic.configure(bg="gray50",fg="white")
+            self.topic.configure(bg="gray50",fg="white",highlightbackground="gray50")
+            self.topic["menu"].config(bg="gray50",fg="white")
 
             self.on.configure(bg="gray30",fg="white")
             self.off.configure(bg="gray30",fg="white")
@@ -148,7 +152,8 @@ if __name__ == "__main__":
             self.like_num.configure(bg="white",fg="black")
             self.com_num.configure(bg="white",fg="black")
             self.cpp.configure(bg="white",fg="black")
-            self.topic.configure(bg="white",fg="black")
+            self.topic.configure(bg="white",fg="black",highlightbackground="white")
+            self.topic["menu"].config(bg="white",fg="black")
 
             self.on.configure(bg=self.defaultbg,fg="black")
             self.off.configure(bg=self.defaultbg,fg="black")

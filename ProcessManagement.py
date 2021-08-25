@@ -15,6 +15,10 @@ def botProcess(bot,logLock,target,like,comment,cpp,topic):
     main.experimental(target, bot, like, comment, cpp, topic, logLock)
 
 def ProcessManager(acc, bot_num, like_num, com_num, cpp,topic):
+    bot_num = int(bot_num)
+    like_num = int(like_num)
+    com_num = int(com_num)
+    cpp = int(cpp)
     start_time = time.time()
     logManager = multiprocessing.Manager()
     logLock = logManager.Lock()

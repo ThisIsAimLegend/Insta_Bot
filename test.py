@@ -1,8 +1,5 @@
-import actions.comment_actions as ca
-import test_file as tf
-import datetime as dt
-import actions.excel_actions as ea
-import actions.structural_actions as sa
-import actions.comments as comments
+import actions.main as main
 
-ca.returnFullComment("Sport")
+if __name__ == "__main__":
+    main.test(["fcbayern"],11,1,1,1,"Sport",None)
+

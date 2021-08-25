@@ -1,9 +1,11 @@
 from openpyxl import load_workbook, Workbook
 from openpyxl.styles.borders import Border, Side
+import mariadb
+import sys
 from sys import exit
 
-#Account that should be deleted
-new_bot = "60"
+#Account that should be added
+new_bot = "CodingIsFun2021"
 pw = "test.python"
 email = "checkmeout1337@gmail.com"
 
@@ -43,7 +45,66 @@ def bot_account():
     wb.save("./data/data.xlsx")
     print("New bot account in list:",new_bot)
 
-check_account()
-bot_account()
-check_memory()
-bot_memory()
+def excel():
+    check_account()
+    bot_account()
+    check_memory()
+    bot_memory()
+
+class BotAction:
+    def __init__(self):
+        try:
+            mariadb.connect(
+                user="root",
+                password="DVWRKrNLkSf5Avp",
+                host="localhost",
+                port=3306,
+                database="InstaBot"
+            )
+        except mariadb.Error as e:
+            print(f"Error connecting to MariaDB Platform: {e}")
+            sys.exit(1)
+
+        connection = mariadb.connect(
+                user="root",
+                password="DVWRKrNLkSf5Avp",
+                host="localhost",
+                port=3306,
+                database="InstaBot"
+            )
+        cur = connection.cursor()
+
+        self.connection = connection
+        self.cur = cur
+
+    def addBot(self):
+        try:
+            self.cur.execute("INSERT INTO account_information (username,password,email) VALUES (?,?,?)",(new_bot,pw,email))
+            print("Added Bot to databank")
+
+        except:
+            print("Something went wrong")
+        self.connection.close()
+
+#Log = BotAction()
+#Log.addBot()
+
+def Bot():
+    connection = mariadb.connect(
+            user="root",
+            password="DVWRKrNLkSf5Avp",
+            host="localhost",
+            port=3306,
+            database="InstaBot"
+        )
+    cur = connection.cursor()
+
+    try:
+        cur.execute("INSERT INTO account_information (username,password,email) VALUES (?,?,?)",(new_bot,pw,email))
+        print("Added ",new_bot," to the databank")
+    except:
+        print("Something went wrong")
+    connection.commit()
+    connection.close()
+
+Bot()

@@ -1,4 +1,6 @@
 import random
+import time
+import keyboard
 from . import comments
 
 def chooseComments(topic):
@@ -20,10 +22,7 @@ def chooseComments(topic):
 def PickRandomComment(topic):
     comment_list = chooseComments(topic)
     comment = random.choice(comment_list)
-    if comment != "":
-        return comment
-    else:
-        return None
+    return comment
 
 def pickRandomEmoji(topic):
     if topic == "Freunde":
@@ -55,3 +54,37 @@ def returnFullComment(topic):
         full_comment = comment + emoji
         #print(full_comment)
         return full_comment
+
+
+#posts random comment from topic list
+def send_comment(driver,topic,cpp,logLock):
+    comment_test = returnFullComment(topic)
+    if comment_test == None:
+        pass
+    else:
+        for _ in range(cpp):
+            comment = returnFullComment(topic)
+            print(comment)
+            time.sleep(0.5)
+            #driver.find_element_by_css_selector('textarea[aria-label="Kommentar hinzufügen ..."]').click()
+            driver.find_element_by_class_name("Ypffh").click()
+            time.sleep(0.5)
+            if logLock != None:
+                logLock.acquire()
+            driver.switch_to_window(driver.current_window_handle)
+            keyboard.write(comment)
+            keyboard.press_and_release("Enter")
+            if logLock != None:
+                logLock.release()
+            time.sleep(1)
+
+def comment_loop(driver,topic,comment_count,cpp,ll):
+    for _ in range(comment_count):
+        send_comment(driver,topic,cpp,ll)
+        time.sleep(0.5)
+        try:
+            driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
+        except:
+            break
+        time.sleep(1)
+    print("Alle Kommentare abgeschickt")
