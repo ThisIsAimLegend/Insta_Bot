@@ -25,7 +25,8 @@ Sport = {
 }
 
 Influencer = {
-    "": [],
+    "nice": [],
+    "super ding": [],
 }
 
 Kunst = {
@@ -39,7 +40,7 @@ Kunst = {
 Musik = {
     "super": [],
     "love ur music": [],
-    "yeeees harry": []
+    "yeeees": []
 }
 
 #\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
