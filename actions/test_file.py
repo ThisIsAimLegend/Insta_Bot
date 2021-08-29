@@ -143,8 +143,8 @@ def botting_actions(target,bot,topic,likes,comment_count,cpp,ll):
         time.sleep(2)
         ClickOnStory()
         log = structure.create_log(target, bot_name, topic, likes, comment_count)
-        logger = structure.DB_Connection(ll)
-        logger.logging(target,bot_name,topic,likes,comment_count)
+        #logger = structure.DB_Connection(ll)
+        #logger.logging(target,bot_name,topic,likes,comment_count)
         if likes == None:
             pass
         else:
