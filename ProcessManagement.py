@@ -35,22 +35,6 @@ def ProcessManager(acc, bot_num, like_num, com_num, cpp,topic):
     pool.join()
     print("Finished bots in",time.time()-start_time,"seconds")
 
-'''
-#creates an independent process for every bot in the botlist
-def ProcessManager():
-    logLock = multiprocessing.Lock()
-    bot_list = getBotList()
-    processes = []
-    for i in range(len(bot_list)):
-        proc = multiprocessing.Process(target=botProcess,args=(i,logLock))
-        proc.start()
-        processes.append(proc)
-
-    for process in processes:
-        process.join()
-'''
-
-
 if __name__ == "__main__":
     start_time = time.time()
     print("Started the program")

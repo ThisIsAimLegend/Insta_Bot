@@ -171,6 +171,7 @@ if __name__ == "__main__":
 
         def output(self):
             from ProcessManagement import ProcessManager
+            from actions.main import test
             account = self.acc.get()
             account = account.split(",")
             bots = self.bot_num.get()
