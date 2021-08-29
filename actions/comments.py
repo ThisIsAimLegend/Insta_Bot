@@ -25,7 +25,8 @@ Sport = {
 }
 
 Influencer = {
-    "": [],
+    "nice": [],
+    "super ding": [],
 }
 
 Kunst = {
@@ -36,17 +37,23 @@ Kunst = {
     "ohaa": []
 }
 
+Musik = {
+    "super": [],
+    "love ur music": [],
+    "yeeees": []
+}
+
 #\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 comDict = {
     "topic" : [Freunde,Girls,Sport,Influencer,Kunst],
     "topic_index": ["Freunde","Girls","Sport","Influencer","Kunst"],
-
     "Freunde_emoji": ["💪🏼","🔥","👌🏼"],
     "Girls_emoji": ["😍","❤️"],
     "Sport_emoji": ["💪🏼","🔥","🦍","🏋️"],
     "Influencer_emoji": [],
-    "Kunst_emoji": ["👍","💖","🤗"]
+    "Kunst_emoji": ["👍","💖","🤗"],
+    "Musik_emoji": ["😍", "🤗", ""]
 }
 
 
