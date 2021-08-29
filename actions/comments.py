@@ -40,7 +40,7 @@ Kunst = {
 
 comDict = {
     "topic" : [Freunde,Girls,Sport,Influencer,Kunst],
-    "topic_index": ["Freunde","Grils","Sport","Influencer","Kunst"],
+    "topic_index": ["Freunde","Girls","Sport","Influencer","Kunst"],
 
     "Freunde_emoji": ["💪🏼","🔥","👌🏼"],
     "Girls_emoji": ["😍","❤️"],

@@ -3,11 +3,12 @@ from openpyxl.styles.borders import Border, Side
 import mariadb
 import sys
 from sys import exit
+import keyring
 
 #Account that should be added
-new_bot = "CodingIsFun2021"
-pw = "test.python"
-email = "checkmeout1337@gmail.com"
+new_bot = str("Doublixah")
+pw = str("test.python")
+email = str("test.mail.trichter@gmail.com")
 
 
 def  check_memory():
@@ -56,22 +57,22 @@ class BotAction:
         try:
             mariadb.connect(
                 user="root",
-                password="DVWRKrNLkSf5Avp",
-                host="localhost",
+                password=keyring.get_password("databank","root"),
+                host=keyring.get_password("IP","database"),
                 port=3306,
-                database="InstaBot"
+                database="instagram_bot"
             )
         except mariadb.Error as e:
             print(f"Error connecting to MariaDB Platform: {e}")
             sys.exit(1)
 
         connection = mariadb.connect(
-                user="root",
-                password="DVWRKrNLkSf5Avp",
-                host="localhost",
-                port=3306,
-                database="InstaBot"
-            )
+            user="root",
+            password=keyring.get_password("databank","root"),
+            host=keyring.get_password("IP","database"),
+            port=3306,
+            database="instagram_bot"
+        )
         cur = connection.cursor()
 
         self.connection = connection
@@ -79,7 +80,7 @@ class BotAction:
 
     def addBot(self):
         try:
-            self.cur.execute("INSERT INTO account_information (username,password,email) VALUES (?,?,?)",(new_bot,pw,email))
+            self.cur.execute("INSERT INTO account_information (username,password,email) VALUES (%s,%s,%s)",(new_bot,pw,email))
             print("Added Bot to databank")
 
         except:
@@ -91,20 +92,17 @@ class BotAction:
 
 def Bot():
     connection = mariadb.connect(
-            user="root",
-            password="DVWRKrNLkSf5Avp",
-            host="localhost",
-            port=3306,
-            database="InstaBot"
-        )
+        user="root",
+        password=keyring.get_password("databank","root"),
+        host=keyring.get_password("IP","database"),
+        port=3306,
+        database="instabot"
+    )
     cur = connection.cursor()
 
-    try:
-        cur.execute("INSERT INTO account_information (username,password,email) VALUES (?,?,?)",(new_bot,pw,email))
-        print("Added ",new_bot," to the databank")
-    except:
-        print("Something went wrong")
-    connection.commit()
+    #cur.execute("INSERT INTO account_information (username,password,email) VALUES (?,?,?)",(new_bot,pw,email))
+    #print("Added ",new_bot," to the databank")
+    #connection.commit()
     connection.close()
 
 Bot()

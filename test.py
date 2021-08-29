@@ -1,5 +1,11 @@
 import actions.main as main
+import actions.structural_actions as structure
+import mariadb
+import keyring
 
-if __name__ == "__main__":
-    main.test(["fcbayern"],11,1,1,1,"Sport",None)
+#DB = structure.DB_Connection(None)
+#DB.acc_info(3)
+
+main.test(["themorpheus"],7,2,0,0,"Informatik",None)
+
 

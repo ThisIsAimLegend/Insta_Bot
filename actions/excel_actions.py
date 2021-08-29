@@ -22,6 +22,7 @@ def getAllAccounts():
         i += 1
     wb.close()
 
+#Outdated, replaced by actions/structural_actions.py/acc_info
 def getAccount(acc):
     wb = load_workbook(filename="./data/data.xlsx")
     w_bot = wb["Account-Daten"]

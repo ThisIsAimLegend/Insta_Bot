@@ -8,7 +8,7 @@ def experimental(target_account, bot, like_count, comment_count, cpp, topic, ll)
     try:
         tf.open_browser()
         tf.noCookies()
-        tf.FormSigner(bot)
+        tf.FormSigner(bot,ll)
         tf.NoPasswordSave()
         tf.NoNotifications()
         for element in target_account:
@@ -44,7 +44,7 @@ def bot(target_account, bot, like_count, comment_count, cpp, topic, ll):
 def test(target_account, bot, like_count, comment_count, cpp, topic, ll):
     tf.open_browser()
     tf.noCookies()
-    tf.FormSigner(bot)
+    tf.FormSigner(bot,ll)
     tf.NoPasswordSave()
     tf.NoNotifications()
     for element in target_account:

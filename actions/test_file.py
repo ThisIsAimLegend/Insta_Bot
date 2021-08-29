@@ -58,7 +58,7 @@ def following():
     driver.refresh()
     time.sleep(3)
     try:
-        driver.find_element_by_class_name("_6VtSN").click() #y3zKF
+        driver.find_element_by_class_name("_6VtSN").click() 
     except:
         try:
             driver.find_element_by_class_name("y3zKF").click()
@@ -103,9 +103,10 @@ def noCookies():
     time.sleep(0.5)
 
 #signs into bot account
-def FormSigner(bc):
+def FormSigner(bc,ll):
     global bot_name
-    name , pw = excel.getAccount(bc)
+    DB = structure.DB_Connection(ll)
+    name , pw = DB.acc_info(bc)
     bot_name = name
     sign_up(name, pw)
     time.sleep(4)

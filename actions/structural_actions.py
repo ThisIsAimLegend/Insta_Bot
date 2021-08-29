@@ -60,12 +60,12 @@ def create_log(target,bot_name, topic, like_count, comment_count):
 class DB_Connection:
     def __init__(self,logLock):
         connection = mariadb.connect(
-                user="root",
-                password=keyring.get_password("databank","root"),
-                host="localhost",
-                port=3306,
-                database="InstaBot"
-            )
+            user="root",
+            password=keyring.get_password("databank","root"),
+            host=keyring.get_password("IP","database"),
+            port=3306,
+            database="instabot"
+        )
         cur = connection.cursor()
 
         self.connection = connection
@@ -80,6 +80,19 @@ class DB_Connection:
         self.connection.close()
         if self.logLock != None:
             self.logLock.release()
+
+    def acc_info(self,acc):
+        acc = int(acc)
+        self.cur.execute("SELECT * FROM acc_data")
+        rows = self.cur.fetchall()
+        row_count = len(rows)
+        if acc <= row_count:
+            self.cur.execute("SELECT username,password FROM acc_data WHERE id = ?",[acc])
+            account = self.cur.fetchall()
+            return account[0]
+        else:
+            print("This bot doesn't exist!")
+
 
 if __name__ == "__main__":
     pass
